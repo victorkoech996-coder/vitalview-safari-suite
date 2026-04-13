@@ -3,10 +3,12 @@ import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import ServicesSection from "@/components/ServicesSection";
 import ToursSection from "@/components/ToursSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import AboutSection from "@/components/AboutSection";
 import StatsSection from "@/components/StatsSection";
 import LodgesSection from "@/components/LodgesSection";
+import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -19,9 +21,11 @@ const Index = () => (
     <AboutSection />
     <ServicesSection />
     <ToursSection />
+    <TestimonialsSection />
     <CTASection />
     <StatsSection />
     <LodgesSection />
+    <FAQSection />
     <ContactSection />
     <Footer />
     <WhatsAppButton />
