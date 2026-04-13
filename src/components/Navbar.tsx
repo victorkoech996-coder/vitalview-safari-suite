@@ -40,7 +40,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-primary-foreground/80 hover:text-gold transition-colors duration-300 text-sm font-medium tracking-wide uppercase"
+              className="text-foreground hover:text-gold transition-colors duration-300 text-sm font-medium tracking-wide uppercase"
             >
               {link.label}
             </a>
@@ -56,7 +56,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-primary-foreground"
+          className="lg:hidden text-foreground"
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -75,7 +75,7 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block text-primary-foreground/80 hover:text-gold transition-colors py-2 text-sm uppercase tracking-wide"
+              className="block text-foreground hover:text-gold transition-colors py-2 text-sm uppercase tracking-wide"
             >
               {link.label}
             </a>
