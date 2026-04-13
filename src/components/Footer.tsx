@@ -8,13 +8,19 @@ const Footer = () => (
           </span>
         </div>
         <div className="flex gap-6">
-          {["Home", "About Us", "FAQ", "Contact"].map((link) => (
+          {[
+            { label: "Home", href: "#home" },
+            { label: "About Us", href: "#about" },
+            { label: "Tours", href: "#tours" },
+            { label: "FAQ", href: "#faq" },
+            { label: "Contact", href: "#contact" },
+          ].map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(" ", "")}`}
+              key={link.label}
+              href={link.href}
               className="text-primary-foreground/60 hover:text-gold transition-colors text-sm"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
