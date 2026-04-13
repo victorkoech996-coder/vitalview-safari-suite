@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { Clock, ArrowRight, Filter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Clock, ArrowRight, Filter, Heart } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useAuth } from "@/hooks/useAuth";
+import { useSavedTours } from "@/hooks/useSavedTours";
+import { toast } from "sonner";
 import lionImg from "@/assets/tours/lion-safari.jpg";
 import elephantsImg from "@/assets/tours/elephants-amboseli.jpg";
 import migrationImg from "@/assets/tours/wildebeest-migration.jpg";
@@ -49,6 +53,9 @@ const ToursSection = () => {
   const [destination, setDestination] = useState<string>("All");
   const [showAll, setShowAll] = useState(false);
   const { ref, isVisible } = useScrollAnimation();
+  const { user } = useAuth();
+  const { saveTour, isSaved } = useSavedTours();
+  const navigate = useNavigate();
 
   const filtered = tours.filter((t) => {
     const d = durationFilters[duration];
@@ -58,6 +65,20 @@ const ToursSection = () => {
   });
 
   const visible = showAll ? filtered : filtered.slice(0, 9);
+
+  const handleSave = (t: Tour) => {
+    if (!user) {
+      toast.info("Please sign in to save tours");
+      navigate("/login");
+      return;
+    }
+    if (isSaved(t.title)) {
+      toast.info("Tour already saved!");
+      return;
+    }
+    saveTour({ title: t.title, img: t.img, days: t.days, destination: t.destination, desc: t.desc });
+    toast.success("Tour saved to your wishlist!");
+  };
 
   return (
     <section id="tours" ref={ref} className="section-padding bg-cream">
@@ -130,6 +151,18 @@ const ToursSection = () => {
                 <div className="absolute top-4 left-4 bg-safari-green/90 backdrop-blur-sm text-secondary-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
                   {t.destination}
                 </div>
+                {/* Save button */}
+                <button
+                  onClick={() => handleSave(t)}
+                  className={`absolute bottom-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
+                    isSaved(t.title)
+                      ? "bg-destructive text-destructive-foreground"
+                      : "bg-background/80 text-muted-foreground hover:bg-destructive hover:text-destructive-foreground"
+                  }`}
+                  title={isSaved(t.title) ? "Saved" : "Save to wishlist"}
+                >
+                  <Heart size={16} fill={isSaved(t.title) ? "currentColor" : "none"} />
+                </button>
               </div>
               <div className="p-6">
                 <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{t.title}</h3>
