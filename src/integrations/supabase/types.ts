@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      saved_tours: {
+        Row: {
+          created_at: string
+          id: string
+          tour_days: string | null
+          tour_description: string | null
+          tour_destination: string | null
+          tour_image: string | null
+          tour_title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tour_days?: string | null
+          tour_description?: string | null
+          tour_destination?: string | null
+          tour_image?: string | null
+          tour_title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tour_days?: string | null
+          tour_description?: string | null
+          tour_destination?: string | null
+          tour_image?: string | null
+          tour_title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
