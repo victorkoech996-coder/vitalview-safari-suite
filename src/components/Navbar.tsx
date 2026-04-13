@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -14,6 +16,7 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -45,12 +48,38 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="gold-gradient text-earth font-semibold px-6 py-2.5 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity"
-          >
-            Book Now
-          </a>
+
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Link
+                to="/dashboard"
+                className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-gold transition-colors uppercase tracking-wide"
+              >
+                <User size={16} /> Dashboard
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-gold transition-colors uppercase tracking-wide"
+              >
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                to="/login"
+                className="text-foreground hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="gold-gradient text-earth font-semibold px-6 py-2.5 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -66,7 +95,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-white/10 backdrop-blur-xl border-t border-white/20 px-4 py-4 space-y-3">
@@ -80,13 +109,41 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
-            className="block gold-gradient text-earth font-semibold px-6 py-2.5 rounded-full text-sm text-center tracking-wide"
-          >
-            Book Now
-          </a>
+
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                onClick={() => setIsOpen(false)}
+                className="block text-foreground hover:text-gold transition-colors py-2 text-sm uppercase tracking-wide"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => { signOut(); setIsOpen(false); }}
+                className="block w-full text-left text-foreground hover:text-gold transition-colors py-2 text-sm uppercase tracking-wide"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+                className="block text-foreground hover:text-gold transition-colors py-2 text-sm uppercase tracking-wide"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                onClick={() => setIsOpen(false)}
+                className="block gold-gradient text-earth font-semibold px-6 py-2.5 rounded-full text-sm text-center tracking-wide"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
