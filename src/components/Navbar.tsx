@@ -69,7 +69,7 @@ const Navbar = () => {
           isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-earth/95 backdrop-blur-md px-4 py-4 space-y-3">
+        <div className="bg-white/10 backdrop-blur-xl border-t border-white/20 px-4 py-4 space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.label}
