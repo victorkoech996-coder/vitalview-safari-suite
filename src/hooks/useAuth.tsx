@@ -30,6 +30,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // IMPORTANT: Set up listener FIRST, then get session.
+    // Do NOT set loading=false until getSession resolves to avoid race conditions on refresh.
+    let initialSessionResolved = false;
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -38,10 +42,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         setDisplayName(null);
       }
-      setLoading(false);
+      // Only set loading false from listener after initial session is resolved
+      if (initialSessionResolved) {
+        setLoading(false);
+      }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
+      initialSessionResolved = true;
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) fetchDisplayName(session.user.id);
