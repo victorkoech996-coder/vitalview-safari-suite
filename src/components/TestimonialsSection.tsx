@@ -2,9 +2,9 @@ import { Star } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const testimonials = [
-  { name: "Sarah Mitchell", country: "United Kingdom", text: "Absolutely magical! The wildebeest migration was beyond anything I could have imagined. Our guide knew exactly where to find the best wildlife sightings. A trip of a lifetime!", rating: 5 },
+  { name: "Victor Koech", country: "Kenya", text: "Absolutely magical! The wildebeest migration was beyond anything I could have imagined. Our guide knew exactly where to find the best wildlife sightings. A trip of a lifetime!", rating: 5 },
   { name: "James Thornton", country: "United States", text: "Vitalview Safaris exceeded all expectations. The lodges were stunning, the food incredible, and seeing elephants against Kilimanjaro's backdrop brought me to tears. Highly recommend!", rating: 5 },
-  { name: "Anke van der Berg", country: "Netherlands", text: "We booked a family safari and every detail was perfectly arranged. The kids loved every moment — from the game drives to the Maasai village visit. Professional and warm team!", rating: 5 },
+  { name: "Jack", country: "Kenya", text: "We booked a family safari and every detail was perfectly arranged. The kids loved every moment — from the game drives to the Maasai village visit. Professional and warm team!", rating: 5 },
 ];
 
 const TestimonialsSection = () => {
