@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# VITALVIEWSAFARIS
 
 TODO: Document your project here
