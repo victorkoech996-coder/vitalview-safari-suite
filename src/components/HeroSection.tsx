@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-safari.jpg";
 
 const HeroSection = () => {
@@ -15,19 +16,39 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6">
-        <p className="text-gold font-medium tracking-[0.3em] uppercase text-sm mb-6 animate-fade-in">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-gold font-medium tracking-[0.3em] uppercase text-sm mb-6"
+        >
           Welcome to Vitalview Safaris
-        </p>
-        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up">
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6"
+        >
           Discover the Beauty{" "}
           <span className="text-gold-gradient">of Travel</span>
-        </h1>
-        <p className="text-primary-foreground/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-primary-foreground/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
           We've been leaders in small group adventure travel by listening to our
           travellers and offering flexible itineraries, freedom to explore,
           smaller groups, safety, and locally based expert guides.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
           <a
             href="#tours"
             className="gold-gradient text-earth font-semibold px-8 py-3.5 rounded-full text-base tracking-wide hover:opacity-90 transition-opacity shadow-lg"
@@ -40,7 +61,7 @@ const HeroSection = () => {
           >
             Contact Us
           </a>
-        </div>
+        </motion.div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">

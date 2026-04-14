@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Clock, ArrowRight, Filter, Heart } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useAuth } from "@/hooks/useAuth";
 import { useSavedTours } from "@/hooks/useSavedTours";
 import { toast } from "sonner";
+import ScrollReveal from "./ScrollReveal";
 import lionImg from "@/assets/tours/lion-safari.jpg";
 import elephantsImg from "@/assets/tours/elephants-amboseli.jpg";
 import migrationImg from "@/assets/tours/wildebeest-migration.jpg";
@@ -52,7 +52,6 @@ const ToursSection = () => {
   const [duration, setDuration] = useState(0);
   const [destination, setDestination] = useState<string>("All");
   const [showAll, setShowAll] = useState(false);
-  const { ref, isVisible } = useScrollAnimation();
   const { user } = useAuth();
   const { saveTour, isSaved } = useSavedTours();
   const navigate = useNavigate();
@@ -81,15 +80,14 @@ const ToursSection = () => {
   };
 
   return (
-    <section id="tours" ref={ref} className="section-padding bg-cream">
+    <section id="tours" className="section-padding bg-cream">
       <div className="max-w-7xl mx-auto">
-        <div className={`text-center mb-10 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <ScrollReveal className="text-center mb-10">
           <p className="text-gold-dark font-medium tracking-[0.2em] uppercase text-sm mb-3">Popular Packages</p>
           <h2 className="section-heading text-foreground">Top Safari Tours</h2>
-        </div>
+        </ScrollReveal>
 
-        {/* Filters */}
-        <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.15s" }}>
+        <ScrollReveal delay={0.1} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <Filter size={16} />
             <span className="font-medium">Filter:</span>
@@ -125,53 +123,49 @@ const ToursSection = () => {
               </button>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {visible.map((t, i) => (
-            <div
-              key={`${t.title}-${i}`}
-              className={`bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-              style={{ animationDelay: `${0.2 + i * 0.06}s` }}
-            >
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={t.img}
-                  alt={t.title}
-                  loading="lazy"
-                  width={800}
-                  height={600}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 bg-earth/80 backdrop-blur-sm text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                  <Clock size={12} />
-                  {t.days}
+            <ScrollReveal key={`${t.title}-${i}`} delay={0.05 * i}>
+              <div className="bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-1">
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={t.img}
+                    alt={t.title}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 right-4 bg-earth/80 backdrop-blur-sm text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    <Clock size={12} />
+                    {t.days}
+                  </div>
+                  <div className="absolute top-4 left-4 bg-safari-green/90 backdrop-blur-sm text-secondary-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
+                    {t.destination}
+                  </div>
+                  <button
+                    onClick={() => handleSave(t)}
+                    className={`absolute bottom-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
+                      isSaved(t.title)
+                        ? "bg-destructive text-destructive-foreground"
+                        : "bg-background/80 text-muted-foreground hover:bg-destructive hover:text-destructive-foreground"
+                    }`}
+                    title={isSaved(t.title) ? "Saved" : "Save to wishlist"}
+                  >
+                    <Heart size={16} fill={isSaved(t.title) ? "currentColor" : "none"} />
+                  </button>
                 </div>
-                <div className="absolute top-4 left-4 bg-safari-green/90 backdrop-blur-sm text-secondary-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                  {t.destination}
+                <div className="p-6">
+                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{t.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t.desc}</p>
+                  <button className="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:gap-3 transition-all group/btn">
+                    View Details <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
                 </div>
-                {/* Save button */}
-                <button
-                  onClick={() => handleSave(t)}
-                  className={`absolute bottom-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
-                    isSaved(t.title)
-                      ? "bg-destructive text-destructive-foreground"
-                      : "bg-background/80 text-muted-foreground hover:bg-destructive hover:text-destructive-foreground"
-                  }`}
-                  title={isSaved(t.title) ? "Saved" : "Save to wishlist"}
-                >
-                  <Heart size={16} fill={isSaved(t.title) ? "currentColor" : "none"} />
-                </button>
               </div>
-              <div className="p-6">
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{t.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t.desc}</p>
-                <button className="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:gap-3 transition-all group/btn">
-                  View Details <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
