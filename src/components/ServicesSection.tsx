@@ -1,5 +1,5 @@
 import { Plane, FileText, Users, Compass, Hotel, Shield, Car, MapPin, Heart } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "./ScrollReveal";
 
 const services = [
   { icon: Plane, label: "Air Travel & Ticketing" },
@@ -14,26 +14,23 @@ const services = [
 ];
 
 const ServicesSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
   return (
-    <section id="services" ref={ref} className="section-padding">
+    <section id="services" className="section-padding">
       <div className="max-w-7xl mx-auto">
-        <div className={`text-center mb-14 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <ScrollReveal className="text-center mb-14">
           <p className="text-gold-dark font-medium tracking-[0.2em] uppercase text-sm mb-3">What We Offer</p>
           <h2 className="section-heading text-foreground">Our Services</h2>
-        </div>
+        </ScrollReveal>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
-            <div
-              key={s.label}
-              className={`flex items-center gap-4 p-6 rounded-xl bg-card border border-border hover:border-gold/40 hover:shadow-lg transition-all duration-300 group cursor-pointer ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-              style={{ animationDelay: `${i * 0.08}s` }}
-            >
-              <div className="w-12 h-12 rounded-lg bg-safari-green/10 flex items-center justify-center shrink-0 group-hover:bg-safari-green/20 transition-colors">
-                <s.icon className="text-safari-green" size={22} />
+            <ScrollReveal key={s.label} delay={i * 0.06}>
+              <div className="flex items-center gap-4 p-6 rounded-xl bg-card border border-border hover:border-gold/40 hover:shadow-lg transition-all duration-300 group cursor-pointer">
+                <div className="w-12 h-12 rounded-lg bg-safari-green/10 flex items-center justify-center shrink-0 group-hover:bg-safari-green/20 transition-colors">
+                  <s.icon className="text-safari-green" size={22} />
+                </div>
+                <span className="font-medium text-foreground">{s.label}</span>
               </div>
-              <span className="font-medium text-foreground">{s.label}</span>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
