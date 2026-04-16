@@ -5,12 +5,12 @@ const slides = [
   {
     src: "https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=1920&q=80",
     alt: "Sunrise over Masai Mara with hot air balloons",
-    effect: "fade",
+    effect: "kenburns",
   },
   {
     src: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1920&q=80",
     alt: "Elephant herd at Amboseli with Mount Kilimanjaro",
-    effect: "kenburns",
+    effect: "fade",
   },
   {
     src: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=80",
@@ -18,8 +18,8 @@ const slides = [
     effect: "slide-left",
   },
   {
-    src: "https://images.unsplash.com/photo-1568797629192-908697ace5fd?auto=format&fit=crop&w=1920&q=80",
-    alt: "Luxury tented camp deck view",
+    src: "https://images.unsplash.com/photo-1504432842672-1a79f78e4084?auto=format&fit=crop&w=1920&q=80",
+    alt: "Luxury tented safari camp at golden hour",
     effect: "slide-right",
   },
   {
@@ -30,7 +30,7 @@ const slides = [
   {
     src: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1920&q=80",
     alt: "Local Maasai guide with travellers",
-    effect: "fade",
+    effect: "kenburns",
   },
 ];
 
@@ -76,7 +76,7 @@ const HeroSection = () => {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(id);
   }, []);
 
@@ -85,7 +85,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center md:justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
         <AnimatePresence mode="sync">
@@ -100,74 +100,88 @@ const HeroSection = () => {
                 loading={i === 0 ? "eager" : "lazy"}
                 fetchPriority={i === 0 ? "high" : "low"}
                 {...variantsFor(slide.effect)}
-                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="absolute inset-0 w-full h-full object-cover will-change-transform"
               />
             ) : null,
           )}
         </AnimatePresence>
-        {/* Preload slide 2 */}
         <link rel="preload" as="image" href={slides[1].src} />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/60 pointer-events-none" />
+        {/* Cinematic layered overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-left md:text-center px-4 sm:px-6 w-full">
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 w-full">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-gold font-medium tracking-[0.3em] uppercase text-sm mb-6"
+          className="text-gold font-medium tracking-[0.4em] uppercase text-xs sm:text-sm mb-6"
         >
-          Welcome
+          ✦ Welcome to East Africa ✦
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="font-heading text-white leading-[1.05] mb-2"
-          style={{ fontWeight: 800, fontSize: "clamp(48px, 6vw, 72px)" }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="font-heading text-white leading-[1.02] mb-3 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+          style={{ fontWeight: 700, fontSize: "clamp(44px, 6.5vw, 80px)" }}
         >
-          Welcome to VitalView Safaris
+          VitalView <span className="italic text-gold-gradient">Safaris</span>
         </motion.h1>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="italic text-white/90 mb-6"
-          style={{ fontWeight: 400, fontSize: "clamp(18px, 2vw, 24px)" }}
+          className="font-heading italic text-white/90 mb-8"
+          style={{ fontWeight: 400, fontSize: "clamp(18px, 2.2vw, 26px)" }}
         >
           Discover the beauty of travel
         </motion.h2>
+
+        {/* Decorative divider */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="flex items-center justify-center gap-3 mb-8"
+        >
+          <span className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-gold/60" />
+          <span className="text-gold text-xs">✦</span>
+          <span className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-gold/60" />
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-white/95 mb-8 md:mx-auto"
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-white/95 mb-10 mx-auto"
           style={{
-            fontSize: "clamp(16px, 1.4vw, 18px)",
-            lineHeight: 1.7,
-            maxWidth: "600px",
+            fontSize: "clamp(15px, 1.3vw, 18px)",
+            lineHeight: 1.75,
+            maxWidth: "640px",
           }}
         >
-          We listen to our travellers and give them exactly what they want. That's how we've become leaders in small group adventure travel — by offering flexible itineraries, the freedom to explore at your pace, smaller groups that feel like family, safety you can trust, and locally based expert guides who know every hidden gem.
+          We listen to our travellers and give them exactly what they want — flexible itineraries, smaller groups that feel like family, safety you can trust, and locally based expert guides who know every hidden gem.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex flex-col sm:flex-row gap-4 md:justify-center"
+          transition={{ duration: 0.8, delay: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="/safaris"
-            className="gold-gradient text-earth font-semibold px-8 py-3.5 rounded-full text-base tracking-wide hover:opacity-90 transition-opacity shadow-lg text-center"
+            href="/services"
+            className="gold-gradient text-earth font-semibold px-8 py-3.5 rounded-full text-base tracking-wide hover:opacity-90 hover:scale-[1.03] transition-all shadow-[0_10px_40px_-10px_hsl(var(--gold)/0.6)] text-center"
           >
             Explore Safaris
           </a>
           <a
             href="#contact"
-            className="border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-full text-base tracking-wide hover:bg-white/10 transition-colors text-center"
+            className="border-2 border-white/50 text-white font-semibold px-8 py-3.5 rounded-full text-base tracking-wide hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm text-center"
           >
-            Contact Us
+            Plan Your Journey
           </a>
         </motion.div>
       </div>
@@ -179,10 +193,10 @@ const HeroSection = () => {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className="h-2.5 w-2.5 rounded-full transition-all duration-300"
+            className="h-2 rounded-full transition-all duration-500"
             style={{
               backgroundColor: i === index ? "#FF6A00" : "rgba(255,255,255,0.4)",
-              transform: i === index ? "scale(1.2)" : "scale(1)",
+              width: i === index ? "32px" : "8px",
             }}
           />
         ))}
