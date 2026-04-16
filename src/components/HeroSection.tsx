@@ -13,7 +13,7 @@ const slides = [
     effect: "fade",
   },
   {
-    src: "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1920&q=80",
+    src: "https://images.unsplash.com/photo-1665070385510-2536c85280fc?q=80&w=1920&auto=format&fit=crop",
     alt: "Safari tour vehicle with tourists on game drive",
     effect: "slide-left",
   },
