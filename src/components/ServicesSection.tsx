@@ -1,35 +1,40 @@
-import { Plane, FileText, Users, Compass, Hotel, Shield, Car, MapPin, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 import ScrollReveal from "./ScrollReveal";
-
-const services = [
-  { icon: Plane, label: "Air Travel & Ticketing" },
-  { icon: FileText, label: "Visa Processing Services" },
-  { icon: Users, label: "Meet & Assist Service" },
-  { icon: Compass, label: "Tours & Safaris" },
-  { icon: Hotel, label: "Hotel Booking & Accommodation" },
-  { icon: Shield, label: "Travel Insurance" },
-  { icon: Car, label: "Car Hire Services" },
-  { icon: MapPin, label: "Airport Transfer Services" },
-  { icon: Heart, label: "Honeymoon Tours" },
-];
+import { services } from "@/data/services";
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="section-padding">
+    <section id="services" className="section-padding bg-earth">
       <div className="max-w-7xl mx-auto">
-        <ScrollReveal className="text-center mb-14">
-          <p className="text-gold-dark font-medium tracking-[0.2em] uppercase text-sm mb-3">What We Offer</p>
-          <h2 className="section-heading text-foreground">Our Services</h2>
+        <ScrollReveal className="text-center mb-12">
+          <p className="text-gold font-medium tracking-[0.2em] uppercase text-sm mb-3">What We Do Best</p>
+          <h2 className="section-heading text-cream">Our Services</h2>
         </ScrollReveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((s, i) => (
-            <ScrollReveal key={s.label} delay={i * 0.06}>
-              <div className="flex items-center gap-4 p-6 rounded-xl bg-card border border-border hover:border-gold/40 hover:shadow-lg transition-all duration-300 group cursor-pointer">
-                <div className="w-12 h-12 rounded-lg bg-safari-green/10 flex items-center justify-center shrink-0 group-hover:bg-safari-green/20 transition-colors">
-                  <s.icon className="text-safari-green" size={22} />
+            <ScrollReveal key={s.slug} delay={i * 0.05}>
+              <Link
+                to={`/services#${s.slug}`}
+                className="group relative block w-full h-64 md:h-72 rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold text-white leading-tight group-hover:underline underline-offset-4 decoration-gold decoration-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-white/80 text-sm mt-2 line-clamp-2">{s.shortDesc}</p>
+                  <span className="mt-3 text-gold text-xs font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn More →
+                  </span>
                 </div>
-                <span className="font-medium text-foreground">{s.label}</span>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
