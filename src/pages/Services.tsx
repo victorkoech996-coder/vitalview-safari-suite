@@ -46,13 +46,21 @@ const Services = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-earth">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <p className="text-gold font-medium tracking-[0.2em] uppercase text-sm mb-3">What We Do Best</p>
-          <h1 className="section-heading text-cream mb-4">Our Services</h1>
-          <p className="text-cream/80 max-w-2xl mx-auto">
-            From private safaris to corporate retreats — explore the full range of travel services we deliver across East Africa.
-          </p>
+      <section className="pt-32 pb-16 bg-earth relative">
+        <div className="max-w-5xl mx-auto px-4">
+          <button
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center gap-2 text-cream/80 hover:text-gold transition-colors mb-8 text-sm font-medium"
+          >
+            <ArrowLeft size={18} /> Back
+          </button>
+          <div className="text-center">
+            <p className="text-gold font-medium tracking-[0.2em] uppercase text-sm mb-3">What We Do Best</p>
+            <h1 className="section-heading text-cream mb-4">Our Services</h1>
+            <p className="text-cream/80 max-w-2xl mx-auto">
+              From private safaris to corporate retreats — explore the full range of travel services we deliver across East Africa.
+            </p>
+          </div>
         </div>
       </section>
 
