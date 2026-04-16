@@ -13,8 +13,8 @@ const slides = [
     effect: "fade",
   },
   {
-    src: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=80",
-    alt: "Lion on a rock at sunset",
+    src: "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1920&q=80",
+    alt: "Safari tour vehicle with tourists on game drive",
     effect: "slide-left",
   },
   {
