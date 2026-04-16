@@ -21,6 +21,7 @@ const faqs = [
 
 const Services = () => {
   const { hash } = useLocation();
+  const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
 
   useEffect(() => {
