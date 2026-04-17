@@ -12,6 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SafariChatbot from "@/components/SafariChatbot";
 
 const Index = () => (
   <div className="min-h-screen">
@@ -29,6 +30,7 @@ const Index = () => (
     <ContactSection />
     <Footer />
     <WhatsAppButton />
+    <SafariChatbot />
   </div>
 );
 
