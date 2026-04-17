@@ -9,6 +9,14 @@ const Footer = () => (
             <span className="font-heading text-xl font-bold text-primary-foreground">
               Vitalview <span className="text-gold">Safaris</span>
             </span>
+            <a
+              href="https://maps.app.goo.gl/kKEfj4GLcZ3VXSA39"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-2 text-primary-foreground/60 hover:text-gold transition-colors text-xs"
+            >
+              Hurlingham Court Building, Argwings Kodhek Rd, Nairobi
+            </a>
           </div>
           <div className="flex gap-6">
             {[
