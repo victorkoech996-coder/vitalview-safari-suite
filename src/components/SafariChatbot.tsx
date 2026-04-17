@@ -54,7 +54,7 @@ const SafariChatbot = () => {
   return (
     <>
       <div
-        className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-2"
+        className="fixed bottom-6 left-6 z-[9999] flex flex-col items-start gap-2"
         style={{ maxWidth: "calc(100vw - 32px)" }}
       >
         {bubbleVisible && !dismissed && (
@@ -73,7 +73,7 @@ const SafariChatbot = () => {
             </button>
             {/* Tail */}
             <span
-              className="absolute -bottom-1.5 right-6 w-3 h-3 bg-white rotate-45 shadow-lg"
+              className="absolute -bottom-1.5 left-6 w-3 h-3 bg-white rotate-45 shadow-lg"
               style={{ clipPath: "polygon(0 0, 100% 100%, 0 100%)" }}
             />
           </div>
