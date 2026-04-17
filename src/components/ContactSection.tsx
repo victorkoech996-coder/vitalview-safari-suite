@@ -95,19 +95,24 @@ const ContactSection = () => {
                   <p className="text-muted-foreground text-sm">info@vitalviewsafaris.com</p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-safari-green/10 flex items-center justify-center shrink-0">
+              <a
+                href="https://maps.app.goo.gl/kKEfj4GLcZ3VXSA39"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-safari-green/10 flex items-center justify-center shrink-0 group-hover:bg-safari-green/20 transition-colors">
                   <MapPin className="text-safari-green" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Location</h4>
-                  <p className="text-muted-foreground text-sm">Nairobi, Kenya</p>
+                  <h4 className="font-semibold text-foreground group-hover:text-gold-dark transition-colors">Location</h4>
+                  <p className="text-muted-foreground text-sm">Hurlingham Court Building, Argwings Kodhek Rd, Nairobi, Kenya</p>
                 </div>
-              </div>
+              </a>
               <div className="rounded-xl overflow-hidden h-64 mt-4 shadow-md">
                 <iframe
-                  title="Nairobi Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255282.35853731544!2d36.68258!3d-1.3028618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2s!4v1"
+                  title="VitalView Safaris Office - Hurlingham Court, Nairobi"
+                  src="https://www.google.com/maps?q=Hurlingham+Court+Building,+Argwings+Kodhek+Rd,+Nairobi&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -116,6 +121,14 @@ const ContactSection = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
+              <a
+                href="https://maps.app.goo.gl/kKEfj4GLcZ3VXSA39"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 mt-2 text-sm font-semibold text-gold-dark hover:text-gold transition-colors"
+              >
+                <MapPin size={16} /> Get Directions
+              </a>
             </div>
           </ScrollReveal>
         </div>
