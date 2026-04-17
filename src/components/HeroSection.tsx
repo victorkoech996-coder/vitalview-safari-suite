@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SafariCarAnimation from "./SafariCarAnimation";
 
 const slides = [
   {
@@ -201,6 +202,8 @@ const HeroSection = () => {
           />
         ))}
       </div>
+
+      <SafariCarAnimation />
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-1.5">
